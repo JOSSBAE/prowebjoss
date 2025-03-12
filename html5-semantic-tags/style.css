@@ -29,34 +29,30 @@ body {
   height: 95%;
 }
 
-.container * {
-  border-radius: 10px;
-  padding: 10px;
-}
 
-.header {
+header {
   grid-area: header;
   background-color: #df5c53;
 }
 
-.navigation {
+nav {
   grid-area: navigation;
   background-color: #eafa73;
 }
 
-.aside {
+aside {
   grid-area: aside;
   background-color: #13b6c5;
 }
 
-.main {
+main {
   grid-area: main;
   background-color: #3993DD;
   height: 100%;
   padding: 10px;
 }
 
-.article {
+article {
   background-color: #44CF6C;
   margin: 10px;
   height: 20rem;
@@ -66,7 +62,7 @@ body {
   height: 27%;
 }
 
-.section {
+section {
   background-color: #A9FDAC;
   margin: 10px;
   height: 5rem;
@@ -76,7 +72,7 @@ body {
   background-color: #E0ACD5;
 }
 
-.footer {
+footer {
   grid-area: footer;
   background-color: #E0ACD5;
 }
