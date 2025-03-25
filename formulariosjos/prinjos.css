@@ -1,0 +1,22 @@
+input,
+textarea {
+	padding: 5px;
+	color: #fff;
+	background-color: #333;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+::placeholder {
+	color: darkseagreen;
+}
+
+/* Inputs inválidos tendrán fondo rojo */
+input:invalid, textarea:invalid {
+	background: red;
+}
+
+/* Inputs válidos tendrán fondo verde */
+input:valid, textarea:valid {
+	background: green;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de Tablas HTML</title>
+   <link rel="stylesheet" href="principaljos.css">
+</head>
+<body>
+  <h1>Fusión de Filas</h1>
+  <table border="1" cellspacing="0" cellpadding="10">
+    <!-- Fila 1 -->
+    <tr>
+      <td>A</td>
+      <td>B</td>
+      <td rowspan="3">C</td>
+      <td>D</td>
+    </tr>
+    <!-- Fila 2 -->
+    <tr>
+      <td rowspan="2">E</td>
+      <td>F</td>
+      <td rowspan="3">G</td>
+    </tr>
+    <!-- Fila 3 -->
+    <tr>
+      <td>H</td>
+    </tr>
+    <!-- Fila 4 -->
+    <tr>
+      <td>I</td>
+      <td>J</td>
+      <td>K</td>
+    </tr>
+  </table>
+
+  <h1>Análisis de Ventas Anuales</h1>
+  <table summary="Análisis de ventas anuales" border="1" cellspacing="0" cellpadding="10">
+    <caption>Análisis de ventas anuales</caption>
+    <colgroup span="1" style="color:red;"></colgroup>
+    <colgroup span="3" style="color:blue;"></colgroup>
+    <thead>
+      <tr>
+        <th scope="col">AÑO</th>
+        <th scope="col">Producto A</th>
+        <th scope="col">Producto B</th>
+        <th scope="col">Producto C</th>
+        <th scope="col">Producto D</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">N-3</th>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <th scope="row">N-2</th>
+        <td>3</td>
+        <td>5</td>
+        <td>8</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th scope="row">N-1</th>
+        <td>4</td>
+        <td>4</td>
+        <td>7</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <th scope="row">N</th>
+        <td>5</td>
+        <td>7</td>
+        <td>6</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
