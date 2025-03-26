@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deliciosa Postrería</title>
+  <link rel="stylesheet" href="principal.css">
+</head>
+<body>
+  <header>
+    <h1>Deliciosa Postrería</h1>
+    <p>¡Postres irresistibles, hechos con amor!</p>
+  </header>
+
+  <section class="formulario">
+    <h2>Haz tu pedido</h2>
+    <form id="pedidoForm" method="post" action="/send/">
+      <fieldset>
+        <legend>Datos Personales</legend>
+        <label for="name">Nombre de usuario:</label>
+        <input id="name" type="text" placeholder="Juan Pérez">
+
+        <label for="email">Correo electrónico:</label>
+        <input id="email" type="email" placeholder="ejemplo@correo.com">
+      </fieldset>
+
+      <fieldset>
+        <legend>Selección de Postres</legend>
+        <label for="postre">Elige tu postre favorito:</label>
+        <select id="postre" name="postre">
+          <option value="tarta">Tarta de manzana</option>
+          <option value="pastel">Pastel de chocolate</option>
+          <option value="helado">Helado de vainilla</option>
+        </select>
+
+        <label for="cantidad">Cantidad:</label>
+        <input id="cantidad" type="number" min="1" max="10" value="1">
+      </fieldset>
+
+      <fieldset>
+        <legend>Comentarios</legend>
+        <label for="comentarios">Escribe algún comentario:</label>
+        <textarea id="comentarios" placeholder="Comentarios adicionales..."></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pago</legend>
+        <label for="tarjeta">Número de tarjeta:</label>
+        <input id="tarjeta" type="text" placeholder="1234 5678 9101 1121">
+      </fieldset>
+
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </section>
+
+  <section class="barra-progreso">
+    <h2>Tiempo estimado de preparación:</h2>
+    <progress value="0" max="100">0%</progress>
+  </section>
+
+  <div id="mensajeConfirmacion" class="mensaje" style="display:none;">
+    <p>¡Tu pedido ha sido enviado correctamente!</p>
+  </div>
+
+  <script>
+    document.getElementById('pedidoForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevenir el envío del formulario
+
+      // Mostrar mensaje de confirmación
+      document.getElementById('mensajeConfirmacion').style.display = 'block';
+      
+      // Simular un tiempo de carga antes de ocultar el mensaje
+      setTimeout(function() {
+        document.getElementById('mensajeConfirmacion').style.display = 'none';
+      }, 3000); // El mensaje se oculta después de 3 segundos
+    });
+
+    let progress = document.querySelector('progress');
+    let value = 0;
+    setInterval(function() {
+      if (value < 100) {
+        value++;
+        progress.value = value;
+      }
+    }, 1000); // Aumenta el valor de la barra de progreso cada segundo
+  </script>
+</body>
+</html>

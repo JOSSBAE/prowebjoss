@@ -1,22 +1,68 @@
-input,
-textarea {
-	padding: 5px;
-	color: #fff;
-	background-color: #333;
-	border-radius: 5px;
-	border: 1px solid #ccc;
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
-::placeholder {
-	color: darkseagreen;
+header {
+  background-color: #ff6347;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 
-/* Inputs inválidos tendrán fondo rojo */
-input:invalid, textarea:invalid {
-	background: red;
+h1 {
+  font-size: 2.5rem;
 }
 
-/* Inputs válidos tendrán fondo verde */
-input:valid, textarea:valid {
-	background: green;
+/* Formulario de pedido */
+.formulario {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-weight: bold;
+  color: #ff6347;
+}
+
+label, input, select, textarea, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Barra de progreso */
+.barra-progreso {
+  text-align: center;
+  margin-top: 20px;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+}
+
+/* Estilo del mensaje de confirmación */
+.mensaje {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
 }
