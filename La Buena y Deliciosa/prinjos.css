@@ -1,0 +1,78 @@
+/* prinjos.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #ff6347;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #ff8c00;
+}
+
+nav a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #ff4500;
+}
+
+section {
+  margin: 40px;
+}
+
+h2 {
+  color: #ff6347;
+}
+
+.producto {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.producto img {
+  width: 200px;
+  height: 200px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ff6347;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #ff4500;
+}
+
+#carrito, #pago, #detalle-tarta, #detalle-pastel, #detalle-helado {
+  background-color: #fff8dc;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+  .producto img {
+    width: 150px;
+    height: 150px;
+  }
+}

@@ -1,0 +1,22 @@
+
+/* CSS - stylejos.css */
+input,
+textarea {
+  padding: 5px;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+::placeholder {
+  color: darkgreen;
+}
+
+input:invalid, textarea:invalid {
+  background-color: #ffcccc;
+}
+
+input:valid, textarea:valid {
+  background-color: #fff;
+  border-color: #00cc00;
+}

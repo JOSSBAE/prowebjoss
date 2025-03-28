@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Buena y Deliciosa Postrería</title>
+  <link rel="stylesheet" href="prinjos.css">
+</head>
+<body>
+  <header>
+    <h1>La Buena y Deliciosa Postreria</h1>
+    <p>¡Postres irresistibles, hechos con amor!</p>
+  </header>
+
+  <nav>
+    <a href="#inicio" onclick="mostrarSeccion('inicio')">Inicio</a>
+    <a href="#productos" onclick="mostrarSeccion('productos')">Productos</a>
+    <a href="#carrito" onclick="mostrarSeccion('carrito')">Carrito</a>
+    <a href="#pago" onclick="mostrarSeccion('pago')">Formas de Pago</a>
+  </nav>
+
+  <section id="inicio" class="seccion">
+    <h2>Bienvenido a La Buena y Deliciosa Postrería</h2>
+    <p>Descubre nuestros deliciosos postres y haz tu pedido.</p>
+    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Ver Productos</a>
+  </section>
+
+  <section id="productos" class="seccion" style="display: none;">
+    <h2>Nuestros Postres</h2>
+    <div class="producto">
+      <img src="tarta.jpg" alt="Tarta de manzana">
+      <h3>Tarta de Manzana</h3>
+      <p>$150</p>
+      <a href="#detalle-tarta" class="btn" onclick="mostrarSeccion('detalle-tarta')">Ver Detalles</a>
+    </div>
+    <div class="producto">
+      <img src="pastel.jpg" alt="Pastel de chocolate">
+      <h3>Pastel de Chocolate</h3>
+      <p>$200</p>
+      <a href="#detalle-pastel" class="btn" onclick="mostrarSeccion('detalle-pastel')">Ver Detalles</a>
+    </div>
+    <div class="producto">
+      <img src="helado.jpg" alt="Helado de vainilla">
+      <h3>Helado de Vainilla</h3>
+      <p>$80</p>
+      <a href="#detalle-helado" class="btn" onclick="mostrarSeccion('detalle-helado')">Ver Detalles</a>
+    </div>
+  </section>
+
+  <section id="detalle-tarta" class="seccion" style="display: none;">
+    <h2>Tarta de Manzana</h2>
+    <img src="tarta.jpg" alt="Tarta de manzana">
+    <p>Deliciosa tarta de manzana recién horneada. Perfecta para acompañar tu café.</p>
+    <p>Precio: $150</p>
+    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Volver a Productos</a>
+  </section>
+
+  <section id="detalle-pastel" class="seccion" style="display: none;">
+    <h2>Pastel de Chocolate</h2>
+    <img src="pastel.jpg" alt="Pastel de chocolate">
+    <p>Pastel de chocolate con relleno cremoso y cobertura de ganache.</p>
+    <p>Precio: $200</p>
+    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Volver a Productos</a>
+  </section>
+
+  <section id="detalle-helado" class="seccion" style="display: none;">
+    <h2>Helado de Vainilla</h2>
+    <img src="helado.jpg" alt="Helado de vainilla">
+    <p>Helado artesanal de vainilla con trozos de galleta. ¡Refrescante y delicioso!</p>
+    <p>Precio: $80</p>
+    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Volver a Productos</a>
+  </section>
+
+  <section id="carrito" class="seccion" style="display: none;">
+    <h2>Tu Carrito</h2>
+    <p>Aún no has agregado productos a tu carrito.</p>
+  </section>
+
+  <section id="pago" class="seccion" style="display: none;">
+    <h2>Formas de Pago</h2>
+    <p>Aceptamos pagos con tarjeta de crédito, débito y transferencias bancarias.</p>
+  </section>
+
+  <script>
+    function mostrarSeccion(seccionId) {
+      const secciones = document.querySelectorAll('.seccion');
+      secciones.forEach(seccion => seccion.style.display = 'none');
+      document.getElementById(seccionId).style.display = 'block';
+    }
+  </script>
+</body>
+</html>
