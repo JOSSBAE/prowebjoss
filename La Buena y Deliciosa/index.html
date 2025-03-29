@@ -3,77 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Buena y Deliciosa Postrería</title>
-  <link rel="stylesheet" href="prinjos.css">
+  <title>La Buena y Deliciosa</title>
+  <link rel="stylesheet" href="joscss.css">
+  <style>
+    header h1 {
+      margin-top: -100px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>La Buena y Deliciosa Postreria</h1>
-    <p>¡Postres irresistibles, hechos con amor!</p>
-  </header>
-
   <nav>
-    <a href="#inicio" onclick="mostrarSeccion('inicio')">Inicio</a>
-    <a href="#productos" onclick="mostrarSeccion('productos')">Productos</a>
-    <a href="#carrito" onclick="mostrarSeccion('carrito')">Carrito</a>
-    <a href="#pago" onclick="mostrarSeccion('pago')">Formas de Pago</a>
+    <a href="#" onclick="mostrarSeccion('inicio')">Inicio</a>
+    <a href="#" onclick="mostrarSeccion('productos')">Productos</a>
+    <a href="#" onclick="mostrarSeccion('carrito')" class="carrito-link">
+      🛒 <span id="contador-carrito">0</span>
+    </a>
+    <a href="#" onclick="mostrarSeccion('pago')">Formas de Pago</a>
   </nav>
 
   <section id="inicio" class="seccion">
-    <h2>Bienvenido a La Buena y Deliciosa Postrería</h2>
-    <p>Descubre nuestros deliciosos postres y haz tu pedido.</p>
-    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Ver Productos</a>
+    <header>
+      <h1>La Buena y Deliciosa</h1>
+      <p>¡Postres irresistibles, hechos con amor!</p>
+      <img src="inicio.jpg" alt="Variedad de postres" class="banner-img">
+    </header>
+    <a href="#" class="btn" onclick="mostrarSeccion('productos')">Ver Productos</a>
   </section>
 
   <section id="productos" class="seccion" style="display: none;">
-    <h2>Nuestros Postres</h2>
-    <div class="producto">
-      <img src="tarta.jpg" alt="Tarta de manzana">
-      <h3>Tarta de Manzana</h3>
-      <p>$150</p>
-      <a href="#detalle-tarta" class="btn" onclick="mostrarSeccion('detalle-tarta')">Ver Detalles</a>
-    </div>
-    <div class="producto">
-      <img src="pastel.jpg" alt="Pastel de chocolate">
-      <h3>Pastel de Chocolate</h3>
-      <p>$200</p>
-      <a href="#detalle-pastel" class="btn" onclick="mostrarSeccion('detalle-pastel')">Ver Detalles</a>
-    </div>
-    <div class="producto">
-      <img src="helado.jpg" alt="Helado de vainilla">
-      <h3>Helado de Vainilla</h3>
-      <p>$80</p>
-      <a href="#detalle-helado" class="btn" onclick="mostrarSeccion('detalle-helado')">Ver Detalles</a>
-    </div>
-  </section>
+    <h2>Nuestros Productos</h2>
+    <label for="categoria">Selecciona una categoría:</label>
+    <select id="categoria" name="categoria" onchange="mostrarCategoria()">
+      <option value="postres">Postres</option>
+      <option value="dulces">Dulces</option>
+      <option value="frutas">Frutas</option>
+    </select>
 
-  <section id="detalle-tarta" class="seccion" style="display: none;">
-    <h2>Tarta de Manzana</h2>
-    <img src="tarta.jpg" alt="Tarta de manzana">
-    <p>Deliciosa tarta de manzana recién horneada. Perfecta para acompañar tu café.</p>
-    <p>Precio: $150</p>
-    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Volver a Productos</a>
-  </section>
+    <div id="postres" class="categoria">
+      <h3>Postres</h3>
+      <div class="producto" data-nombre="Tarta de Manzana" data-precio="150">
+        <img src="tarta.jpg" alt="Tarta de manzana">
+        <h3>Tarta de Manzana</h3>
+        <p>$150</p>
+        <label for="cantidad-tarta">Cantidad:</label>
+        <input type="number" id="cantidad-tarta" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-tarta')">Agregar al Carrito</button>
+      </div>
+      <div class="producto" data-nombre="Pastel de Chocolate" data-precio="200">
+        <img src="pastel.jpg" alt="Pastel de chocolate">
+        <h3>Pastel de Chocolate</h3>
+        <p>$200</p>
+        <label for="cantidad-pastel">Cantidad:</label>
+        <input type="number" id="cantidad-pastel" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-pastel')">Agregar al Carrito</button>
+      </div>
+    </div>
 
-  <section id="detalle-pastel" class="seccion" style="display: none;">
-    <h2>Pastel de Chocolate</h2>
-    <img src="pastel.jpg" alt="Pastel de chocolate">
-    <p>Pastel de chocolate con relleno cremoso y cobertura de ganache.</p>
-    <p>Precio: $200</p>
-    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Volver a Productos</a>
-  </section>
+    <div id="dulces" class="categoria" style="display: none;">
+      <h3>Dulces</h3>
+      <div class="producto" data-nombre="Dulce de Leche" data-precio="50">
+        <img src="dulce.jpg" alt="Dulce de Leche">
+        <h3>Dulce de Leche</h3>
+        <p>$50</p>
+        <label for="cantidad-dulce">Cantidad:</label>
+        <input type="number" id="cantidad-dulce" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-dulce')">Agregar al Carrito</button>
+      </div>
+    </div>
 
-  <section id="detalle-helado" class="seccion" style="display: none;">
-    <h2>Helado de Vainilla</h2>
-    <img src="helado.jpg" alt="Helado de vainilla">
-    <p>Helado artesanal de vainilla con trozos de galleta. ¡Refrescante y delicioso!</p>
-    <p>Precio: $80</p>
-    <a href="#productos" class="btn" onclick="mostrarSeccion('productos')">Volver a Productos</a>
+    <div id="frutas" class="categoria" style="display: none;">
+      <h3>Frutas</h3>
+      <div class="producto" data-nombre="Fresas con Crema" data-precio="100">
+        <img src="fresas.jpg" alt="Fresas con Crema">
+        <h3>Fresas con Crema</h3>
+        <p>$100</p>
+        <label for="cantidad-fresas">Cantidad:</label>
+        <input type="number" id="cantidad-fresas" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-fresas')">Agregar al Carrito</button>
+      </div>
+    </div>
   </section>
 
   <section id="carrito" class="seccion" style="display: none;">
     <h2>Tu Carrito</h2>
-    <p>Aún no has agregado productos a tu carrito.</p>
+    <div id="lista-carrito" class="carrito-estilo"></div>
+    <p>Total: $<span id="total">0</span></p>
+    <!-- Aquí va el botón para ir a la sección de pago -->
+    <button onclick="mostrarSeccion('pago')">Ir a Pagar</button>
   </section>
 
   <section id="pago" class="seccion" style="display: none;">
@@ -87,6 +103,53 @@
       secciones.forEach(seccion => seccion.style.display = 'none');
       document.getElementById(seccionId).style.display = 'block';
     }
+  function mostrarCategoria() {
+      const categoriaSeleccionada = document.getElementById('categoria').value;
+      const categorias = document.querySelectorAll('.categoria');
+      categorias.forEach(categoria => categoria.style.display = 'none');
+      document.getElementById(categoriaSeleccionada).style.display = 'block';
+    }
+
+    let carrito = [];
+
+function agregarAlCarrito(boton, cantidadId) {
+  const producto = boton.parentElement;
+  const nombre = producto.getAttribute('data-nombre');
+  const precio = parseFloat(producto.getAttribute('data-precio'));
+  const cantidad = parseInt(document.getElementById(cantidadId).value);
+
+  const itemExistente = carrito.find(item => item.nombre === nombre);
+  if (itemExistente) {
+    itemExistente.cantidad += cantidad;
+  } else {
+    carrito.push({ nombre, precio, cantidad });
+  }
+
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+  const listaCarrito = document.getElementById('lista-carrito');
+  const totalSpan = document.getElementById('total');
+  const contadorCarrito = document.getElementById('contador-carrito');
+
+  listaCarrito.innerHTML = '';
+  let total = 0;
+  let cantidadTotal = 0;
+
+  carrito.forEach(item => {
+    total += item.precio * item.cantidad;
+    cantidadTotal += item.cantidad;
+
+    const li = document.createElement('li');
+    li.textContent = `${item.nombre} x ${item.cantidad} - $${item.precio * item.cantidad}`;
+    listaCarrito.appendChild(li);
+  });
+
+  totalSpan.textContent = total;
+  contadorCarrito.textContent = cantidadTotal;
+}
+
   </script>
 </body>
 </html>
