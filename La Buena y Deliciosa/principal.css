@@ -1,15 +1,22 @@
+/* Asegurarse de que el contenido sea escalable */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+}
+
 body { 
   font-family: Arial, sans-serif; 
   background-color: #f8e1e8; /* Color pastel rosa */ 
   margin: 0; 
   padding: 0; 
+  box-sizing: border-box;
 } 
 
 header { 
   background-color: #f9b3d1; /* Rosa pastel suave */ 
   color: white; 
   text-align: center; 
-  padding: 20px; 
+  padding: 5vh 2vw; /* Uso de unidades relativas */
 } 
 
 nav { 
@@ -17,161 +24,155 @@ nav {
   flex-wrap: wrap; 
   justify-content: center; 
   background-color: #f5a3c7; /* Rosa pastel claro */ 
+  width: 100%;
 } 
 
 nav a { 
-  font-family: 'Pacifico', cursive; /* Usamos la fuente Pacifico */ 
-  font-size: 30px; /* Ajusta el tamaño de la fuente */ 
+  font-family: 'Pacifico', cursive; 
+  font-size: 3vw; /* Tamaño de fuente flexible */
   color: white; 
-  padding: 14px 20px; 
+  padding: 1vh 2vw; 
   text-decoration: none; 
-  text-transform: uppercase; /* Letras en mayúsculas */ 
-  letter-spacing: 1px; /* Espaciado entre letras */ 
-  background: linear-gradient(45deg, #ff6347, #ff4500); /* Gradiente de color */ 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  background: linear-gradient(45deg, #ff6347, #ff4500); 
   border-radius: 5px; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */ 
-  transition: all 0.3s ease; /* Transición para efectos suaves */ 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+  transition: all 0.3s ease; 
 } 
 
 nav a:hover { 
-  color: #fff; /* Cambio de color al pasar el mouse */ 
-  background: #ff4500; /* Fondo sólido cuando se hace hover */ 
-  transform: scale(1.1); /* Efecto de ampliación al pasar el mouse */ 
+  color: #fff; 
+  background: #ff4500; 
+  transform: scale(1.1); 
 } 
 
 nav a:focus { 
-  outline: none; /* Elimina el contorno cuando el enlace es enfocado */ 
+  outline: none; 
 } 
 
 section { 
-  margin: 40px; 
-  padding: 20px; 
-  background-color: #fff0f5; /* Rosa muy suave de fondo */ 
+  margin: 2vw; /* Margen flexible */
+  padding: 3vh 2vw; 
+  background-color: #fff0f5; 
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 } 
 
 h2, h3 { 
-  color: #f68e8e; /* Rosa suave para títulos */ 
+  color: #f68e8e; 
 } 
 
 .producto { 
   border: 1px solid #f5a3c7; 
-  padding: 20px; 
-  margin-bottom: 20px; 
+  padding: 3vh 2vw; 
+  margin-bottom: 3vh; 
   text-align: center; 
   background-color: #ffffff; 
   border-radius: 10px; 
 } 
 
 .producto img { 
-  width: 200px; 
-  height: 200px; 
+  width: 50vw; /* Imagen flexible */
+  max-width: 250px; /* Máximo tamaño de la imagen */
+  height: auto; 
   border-radius: 10px; 
 } 
 
 .btn { 
   display: inline-block; 
-  background-color: #f5a3c7; /* Rosa pastel para los botones */ 
+  background-color: #f5a3c7; 
   color: white; 
-  padding: 10px 20px; 
+  padding: 2vh 4vw; 
   text-decoration: none; 
   border-radius: 5px; 
   font-weight: bold; 
 } 
 
 .btn:hover { 
-  background-color: #f08c9f; /* Rosa más fuerte al pasar el ratón */ 
-} 
-
-#carrito, #pago, #detalle-tarta, #detalle-pastel, #detalle-helado { 
-  background-color: #fff8dc; 
-  padding: 20px; 
-  border-radius: 10px; 
+  background-color: #f08c9f; 
 } 
 
 #inicio { 
   background-color: #f9b3d1; 
   color: white; 
   text-align: center; 
-  padding: 100px 0; 
+  padding: 15vh 2vw; /* Usar unidades relativas */
 } 
 
 #inicio h2 { 
-  font-size: 2.5rem; 
-  color: #fff; 
+  font-size: 5vw; 
 } 
 
 #inicio p { 
-  font-size: 1.2rem; 
-  color: #fff; 
+  font-size: 2vw; 
 } 
 
 #inicio .btn { 
   background-color: #f68e8e; 
   color: white; 
-  font-size: 1.2rem; 
+  font-size: 2vw; 
 } 
 
 #inicio .btn:hover { 
   background-color: #f08c9f; 
 } 
 
-/* Estilos Responsivos */ 
+/* Estilos Responsivos */
+@media (max-width: 1200px) { 
+  nav a { 
+    font-size: 2.5vw; 
+    padding: 1vh 2vw; 
+  }
+
+  .producto img { 
+    width: 40vw; 
+    max-width: 200px; 
+  }
+
+  #inicio { 
+    padding: 10vh 2vw; 
+  }
+}
+
 @media (max-width: 768px) { 
   nav { 
     flex-direction: column; 
     text-align: center; 
   }
-  
+
+  nav a { 
+    font-size: 4vw; 
+  }
+
   .producto img { 
-    width: 150px; 
-    height: 150px; 
-  } 
+    width: 70vw; 
+    max-width: 150px; 
+  }
 
   #inicio { 
-    padding: 60px 0; 
-  } 
-} 
+    padding: 8vh 2vw; 
+  }
+}
 
 @media (max-width: 480px) { 
   nav a { 
-    font-size: 1.2rem; 
-    padding: 5px; 
+    font-size: 5vw; 
+    padding: 2vh 4vw; 
+  }
+
+  .producto img { 
+    width: 80vw; 
+    max-width: 150px; 
+  }
+
+  section { 
+    margin: 5vw 0; 
+    padding: 5vh 2vw; 
+  }
+
+  .container { 
+    width: 90%; 
+    padding: 5vw; 
   } 
-}
-
-.container { 
-  background: white; 
-  padding: 20px; 
-  border-radius: 10px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  width: 350px; 
-  text-align: center; 
-} 
-
-h2 { 
-  color: #ff66b2; 
-} 
-
-input, select { 
-  width: 100%; 
-  padding: 10px; 
-  margin: 10px 0; 
-  border: 1px solid #ddd; 
-  border-radius: 5px; 
-} 
-
-button { 
-  background-color: #ff66b2; 
-  color: white; 
-  padding: 10px; 
-  border: none; 
-  width: 100%; 
-  border-radius: 5px; 
-  cursor: pointer; 
-} 
-
-button:hover { 
-  background-color: #ff3385; 
 }
