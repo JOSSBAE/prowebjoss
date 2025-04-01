@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos - La Buena y Deliciosa</title>
+  <link rel="stylesheet" href="principal.css" />
+</head>
+<body>
+  <nav>
+    <a class="sc-eHgmQL kzWSGr" href="index.html" style="color: white; font-size: 2.5rem; font-family: 'Pacifico', cursive; text-decoration: none;">La Buena y Deliciosa</a>
+    <a href="index.html" onclick="mostrarSeccion('inicio')">Inicio</a>
+    <a href="productos.html" onclick="mostrarSeccion('productos')">Productos</a>
+    <a href="carrito.html" class="carrito-link"> 🛒 <span id="contador-carrito">0</span> </a>
+    <a href="pago.html" onclick="mostrarSeccion('pago')">Formas de Pago</a>
+  </nav>
+
+  <section id="productos" class="seccion">
+    <h2>Nuestros Productos</h2>
+    <label for="categoria">Selecciona una categoría:</label>
+    <select id="categoria" name="categoria" onchange="mostrarCategoria()">
+      <option value="postres">Postres</option>
+      <option value="dulces">Dulces</option>
+      <option value="frutas">Frutas</option>
+    </select>
+
+    <!-- Postres -->
+    <div id="postres" class="categoria">
+      <h3>Postres</h3>
+      <div class="producto" data-nombre="Tarta de Manzana" data-precio="150" data-imagen="tarta.jpg">
+        <img src="tarta.jpg" alt="Tarta de manzana">
+        <h3>Tarta de Manzana</h3>
+        <p>$150</p>
+        <label for="cantidad-tarta">Cantidad:</label>
+        <input type="number" id="cantidad-tarta" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-tarta')">Agregar al Carrito</button>
+      </div>
+
+      <div class="producto" data-nombre="Pastel de Chocolate" data-precio="200" data-imagen="pastel.jpg">
+        <img src="pastel.jpg" alt="Pastel de chocolate">
+        <h3>Pastel de Chocolate</h3>
+        <p>$200</p>
+        <label for="cantidad-pastel">Cantidad:</label>
+        <input type="number" id="cantidad-pastel" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-pastel')">Agregar al Carrito</button>
+      </div>
+    </div>
+
+    <!-- Dulces -->
+    <div id="dulces" class="categoria" style="display: none;">
+      <h3>Dulces</h3>
+      <div class="producto" data-nombre="Dulce de Leche" data-precio="50" data-imagen="dulce.jpg">
+        <img src="dulce.jpg" alt="Dulce de Leche">
+        <h3>Dulce de Leche</h3>
+        <p>$50</p>
+        <label for="cantidad-dulce">Cantidad:</label>
+        <input type="number" id="cantidad-dulce" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-dulce')">Agregar al Carrito</button>
+      </div>
+    </div>
+
+    <!-- Frutas -->
+    <div id="frutas" class="categoria" style="display: none;">
+      <h3>Frutas</h3>
+      <div class="producto" data-nombre="Fresas con Crema" data-precio="100" data-imagen="fresas.jpg">
+        <img src="fresas.jpg" alt="Fresas con Crema">
+        <h3>Fresas con Crema</h3>
+        <p>$100</p>
+        <label for="cantidad-fresas">Cantidad:</label>
+        <input type="number" id="cantidad-fresas" value="1" min="1" max="100">
+        <button onclick="agregarAlCarrito(this, 'cantidad-fresas')">Agregar al Carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Obtener carrito desde localStorage o iniciar vacío
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Función para actualizar el contador de productos en el carrito
+    function actualizarContador() {
+      document.getElementById('contador-carrito').textContent = carrito.length;
+    }
+
+    // Función para agregar productos al carrito
+    function agregarAlCarrito(boton, idInput) {
+      let producto = boton.parentElement;
+      let nombre = producto.getAttribute("data-nombre");
+      let precio = parseFloat(producto.getAttribute("data-precio"));
+      let imagen = producto.getAttribute("data-imagen");
+      let cantidad = parseInt(document.getElementById(idInput).value);
+
+      if (cantidad > 0) {
+        let item = {
+          nombre: nombre,
+          precio: precio,
+          cantidad: cantidad,
+          imagen: imagen
+        };
+
+        carrito.push(item);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarContador();
+      } else {
+        alert("Por favor, ingresa una cantidad válida.");
+      }
+    }
+
+    // Función para mostrar la categoría seleccionada
+    function mostrarCategoria() {
+      const categorias = ['postres', 'dulces', 'frutas'];
+      const seleccion = document.getElementById('categoria').value;
+
+      categorias.forEach(cat => {
+        document.getElementById(cat).style.display = (cat === seleccion) ? 'block' : 'none';
+      });
+    }
+
+    actualizarContador();
+  </script>
+</body>
+</html>
