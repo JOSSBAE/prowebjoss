@@ -93,30 +93,37 @@ h2, h3 {
   background-color: #f08c9f; 
 } 
 
-#inicio { 
-  background-color: #f9b3d1; 
-  color: white; 
-  text-align: center; 
-  padding: 15vh 2vw; /* Usar unidades relativas */
-} 
+#inicio {
+  background: url('inicio.jpg') no-repeat center center;
+  background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+  color: white;
+  text-align: center;
+  padding: 15vh 2vw;
+  min-height: 100vh; /* Garantiza que ocupe toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-#inicio h2 { 
-  font-size: 5vw; 
-} 
+#inicio h2 {
+  font-size: 5vw;
+}
 
-#inicio p { 
-  font-size: 2vw; 
-} 
+#inicio p {
+  font-size: 2vw;
+}
 
-#inicio .btn { 
-  background-color: #f68e8e; 
-  color: white; 
-  font-size: 2vw; 
-} 
+#inicio .btn {
+  background-color: #f68e8e;
+  color: white;
+  font-size: 2vw;
+}
 
-#inicio .btn:hover { 
-  background-color: #f08c9f; 
-} 
+#inicio .btn:hover {
+  background-color: #f08c9f;
+}
+
 
 /* Estilos Responsivos */
 @media (max-width: 1200px) { 
