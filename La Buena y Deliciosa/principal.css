@@ -191,3 +191,161 @@ header h1 {
     padding: 5vw; 
   } 
 }
+
+/* --------------------------------------------- */
+/* Estilos añadidos para validacion.html (formulario) */
+/* --------------------------------------------- */
+
+#registro {
+    width: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #F8A9D3;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #F8A9D3;
+    outline: none;
+}
+
+.error {
+    color: #D9534F;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.exito {
+    color: #28a745;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+button {
+    background-color: #F8A9D3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f497c4;
+}
+
+button:focus {
+    outline: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input,
+form button {
+    margin-bottom: 15px;
+}
+
+#mensaje-exito {
+    display: none;
+    margin-top: 10px;
+}
+
+input:focus {
+    border-color: #F8A9D3;
+}
+#registro {
+    width: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#registro h2 {
+    color: #F8A9D3;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#registro label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#registro input[type="text"],
+#registro input[type="email"],
+#registro input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#registro button {
+    background-color: #F8A9D3;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#registro button:hover {
+    background-color: #f497c4;
+}
+
+#registro a {
+    color: #f68e8e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#registro a:hover {
+    text-decoration: underline;
+}

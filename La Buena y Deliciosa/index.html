@@ -5,61 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Buena y Deliciosa</title>
   <link rel="stylesheet" href="principal.css" />
-  
-  <!-- Metadatos Open Graph para compartir en redes sociales -->
-  <meta property="og:title" content="La Buena y Deliciosa - Postres Irresistibles" />
-  <meta property="og:description" content="Descubre nuestra deliciosa variedad de postres hechos con amor." />
-  <meta property="og:image" content="https://jossbae.github.io/prowebjoss/La%20Buena%20y%20Deliciosa/inicio.jpg" />
-  <meta property="og:url" content="https://github.com/JOSSBAE/prowebjoss.git" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:site_name" content="La Buena y Deliciosa" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
 </head>
 <body>
   <nav>
-    <a class="sc-eHgmQL kzWSGr" href="index.html" style="color: white; font-size: 2.5rem; font-family: 'Pacifico', cursive; text-decoration: none;">La Buena y Deliciosa</a>
-    <a href="index.html" onclick="mostrarSeccion('inicio')">Inicio</a>
-    <a href="productos.html" onclick="mostrarSeccion('productos')">Productos</a>
-    <a href="carrito.html" class="carrito-link"> 🛒 <span id="contador-carrito">0</span> </a>
-    <a href="pago.html" onclick="mostrarSeccion('pago')">Formas de Pago</a>
+    <a href="index.html" style="color: white; font-size: 2.5rem; font-family: 'Pacifico', cursive; text-decoration: none;">La Buena y Deliciosa</a>
+    <a href="index.html">Inicio</a>
+    <a href="#" id="link-productos">Productos</a>
+    <a href="#" id="link-carrito"> 🛒 <span id="contador-carrito">0</span> </a>
+    <a href="#" id="link-pago">Formas de Pago</a>
+    <button onclick="cerrarSesion()">Cerrar Sesión</button>
   </nav>
 
-  <!-- Sección Inicio -->
   <section id="inicio" class="seccion">
     <header>
       <h1>La Buena y Deliciosa</h1>
       <p>¡Postres irresistibles, hechos con amor!</p>
     </header>
-    <a href="productos.html" class="btn" onclick="mostrarSeccion('productos')">Ver Productos</a>
+    <a href="#" id="btn-ver-productos" class="btn">Ver Productos</a>
   </section>
 
   <script>
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    // Función para proteger rutas si no hay sesión activa
+    function verificarSesion(e, destino) {
+      const sesionIniciada = localStorage.getItem('usuarioLogueado');
+      if (!sesionIniciada) {
+        e.preventDefault();
+        alert("Debes iniciar sesión o registrarte para continuar.");
+        window.location.href = "validacion.html";
+      } else {
+        window.location.href = destino;
+      }
+    }
 
+    // Asignar eventos a los enlaces protegidos
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('link-productos').addEventListener('click', function(e) {
+        verificarSesion(e, "productos.html");
+      });
+      document.getElementById('link-carrito').addEventListener('click', function(e) {
+        verificarSesion(e, "carrito.html");
+      });
+      document.getElementById('link-pago').addEventListener('click', function(e) {
+        verificarSesion(e, "pago.html");
+      });
+      document.getElementById('btn-ver-productos').addEventListener('click', function(e) {
+        verificarSesion(e, "productos.html");
+      });
+    });
+
+    // Carrito (simulado)
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     function actualizarContador() {
       document.getElementById('contador-carrito').textContent = carrito.length;
     }
+    actualizarContador();
 
-    function agregarAlCarrito(boton, idInput) {
-      let producto = boton.parentElement;
-      let nombre = producto.getAttribute("data-nombre");
-      let precio = producto.getAttribute("data-precio");
-      let cantidad = document.getElementById(idInput).value;
-
-      let item = {
-        nombre: nombre,
-        precio: precio,
-        cantidad: cantidad
-      };
-
-      carrito.push(item);
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      actualizarContador();
+    // Cierre de sesión
+    function cerrarSesion() {
+      localStorage.removeItem('usuarioLogueado');
+      alert("Has cerrado sesión.");
+      location.reload();
     }
-
-    actualizarContador(); // Actualiza el contador cuando se carga la página
   </script>
 </body>
 </html>

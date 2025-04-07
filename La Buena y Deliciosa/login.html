@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="principal.css">
+</head>
+<body>
+  <div id="registro">
+    <h2>Iniciar Sesión</h2>
+    <form id="form-login">
+      <label for="login-email">Correo electrónico</label>
+      <input type="email" id="login-email" required>
+
+      <label for="login-password">Contraseña</label>
+      <input type="password" id="login-password" required>
+
+      <button type="submit">Iniciar Sesión</button>
+      <p class="error" id="login-error"></p>
+      <p>¿No estás registrado? <a href="validacion.html">Regístrate aquí</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('form-login').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
+
+      if (usuarioGuardado && usuarioGuardado.email === email && usuarioGuardado.password === password) {
+        localStorage.setItem('usuarioLogueado', 'true');
+        window.location.href = 'index.html';
+      } else {
+        document.getElementById('login-error').textContent = 'Correo o contraseña incorrectos.';
+      }
+    });
+  </script>
+</body>
+</html>
