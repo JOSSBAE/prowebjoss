@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src ="biblioteca.js"></script>
+	<title>Uso de clases en Java Script</title>
+</head>
+<body>
+	<h1>Clases en Java Script</h1>
+	<div id="divPoo"></div>
+	<hr>
+	<div id = "divSegundo"></div>
+	<script>
+		const mario= new Personaje("mario");
+
+		const divRes = document.querySelectorAll("div")[0];
+
+		if(divRes){
+			divRes.innerHTML = `hola ${mario.hola()}`;
+		}
+	</script>
+</body>
+</html>
