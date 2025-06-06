@@ -1,258 +1,351 @@
-* {
-  margin: 0;
-  padding: 0;
+/* Asegurarse de que el contenido sea escalable */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+}
+
+body { 
+  font-family: Arial, sans-serif; 
+  background-color: #f8e1e8; /* Color pastel rosa */ 
+  margin: 0; 
+  padding: 0; 
   box-sizing: border-box;
-}
-/* Elimina márgenes y rellenos por defecto y ajusta el modelo de caja */
+} 
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #fff8f0; /* Color cálido */
-  color: #333;
-  line-height: 1.6;
-  padding: 20px;
-}
-/* Estilos generales para el cuerpo del sitio */
+header { 
+  background-color: #f9b3d1; /* Rosa pastel suave */ 
+  color: white; 
+  text-align: center; 
+  padding: 5vh 2vw; /* Uso de unidades relativas */
+} 
 
-nav {
-  background-color: #ff6347; /* Color tomate */
-  padding: 15px 30px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-/* Barra de navegación: horizontal, con espacio entre elementos */
-
-nav a:first-child {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.5rem;
-  color: white;
-  text-decoration: none;
-  flex-grow: 1;
-}
-/* Logo del sitio o nombre principal, ocupa más espacio */
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
-/* Enlaces del menú */
-
-nav a:hover {
-  color: #ffd1c1;
-}
-/* Efecto al pasar el mouse sobre enlaces del nav */
-
-.carrito-link {
-  position: relative;
-  font-size: 1.5rem;
-}
-/* Ícono del carrito con posición relativa para el contador */
-
-#contador-carrito {
-  background-color: #222;
-  color: #fff;
-  border-radius: 50%;
-  padding: 2px 7px;
-  font-size: 0.8rem;
-  position: absolute;
-  top: -8px;
-  right: -12px;
-}
-/* Círculo del contador del carrito */
-
-.seccion {
-  margin-top: 30px;
-}
-/* Margen superior para secciones principales */
-
-h2, h3 {
-  color: #b33a3a;
-  margin-bottom: 15px;
-}
-/* Encabezados destacados */
-
-.categoria {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-}
-/* Contenedor de productos: flexible y adaptable */
-
-.producto {
-  background-color: #fff;
-  border: 1px solid #e3bfbf;
-  border-radius: 8px;
-  padding: 15px;
-  width: 220px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-/* Tarjeta de producto individual */
-
-.producto:hover {
-  transform: scale(1.05);
-}
-/* Efecto de aumento al pasar el cursor */
-
-.producto img {
+nav { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  background-color: #f5a3c7; /* Rosa pastel claro */ 
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-/* Imágenes de productos: proporciones fijas y redondeadas */
+} 
 
-button {
-  background-color: #b33a3a;
+nav a { 
+  font-family: 'Pacifico', cursive; 
+  font-size: 3vw; /* Tamaño de fuente flexible */
+  color: white; 
+  padding: 1vh 2vw; 
+  text-decoration: none; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  background: linear-gradient(45deg, #ff6347, #ff4500); 
+  border-radius: 5px; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+  transition: all 0.3s ease; 
+} 
+
+nav a:hover { 
+  color: #fff; 
+  background: #ff4500; 
+  transform: scale(1.1); 
+} 
+
+nav a:focus { 
+  outline: none; 
+} 
+
+section { 
+  margin: 2vw; /* Margen flexible */
+  padding: 3vh 2vw; 
+  background-color: #fff0f5; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+} 
+
+h2, h3 { 
+  color: #f68e8e; 
+} 
+
+.producto { 
+  border: 1px solid #f5a3c7; 
+  padding: 3vh 2vw; 
+  margin-bottom: 3vh; 
+  text-align: center; 
+  background-color: #ffffff; 
+  border-radius: 10px; 
+} 
+
+.producto img { 
+  width: 50vw; /* Imagen flexible */
+  max-width: 250px; /* Máximo tamaño de la imagen */
+  height: auto; 
+  border-radius: 10px; 
+} 
+
+.btn { 
+  display: inline-block; 
+  background-color: #f5a3c7; 
+  color: white; 
+  padding: 2vh 4vw; 
+  text-decoration: none; 
+  border-radius: 5px; 
+  font-weight: bold; 
+} 
+
+.btn:hover { 
+  background-color: #f08c9f; 
+} 
+
+header h1 {
+  margin-top: -100px;
+}
+
+#inicio {
+  background: url('https://jossbae.github.io/prowebjoss/La%20Buena%20y%20Deliciosa/inicio.jpg') no-repeat center center;
+  background-size: cover;
   color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-/* Botones generales */
-
-button:hover {
-  background-color: #8c2d2d;
-}
-/* Cambio de color al pasar el mouse */
-
-input[type=number] {
-  width: 50px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   text-align: center;
-}
-/* Estilo de inputs numéricos (cantidad de productos) */
-
-#lista-carrito {
+  padding: 15vh 2vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-/* Contenedor vertical para productos en el carrito */
-
-.producto-carrito {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
-  border: 1px solid #e3bfbf;
-  border-radius: 8px;
-  padding: 10px;
-  background-color: #fff;
 }
-/* Tarjeta individual dentro del carrito */
 
-.producto-carrito img {
-  border-radius: 6px;
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
+#inicio h1 {
+  font-size: 5vw;
 }
-/* Imagen pequeña dentro del carrito */
 
-.producto-carrito p {
-  margin: 0 10px 0 0;
-  flex-grow: 1;
+#inicio p {
+  font-size: 2vw;
 }
-/* Nombre o detalles del producto, ocupa espacio libre */
 
-.producto-carrito button {
-  background-color: #d9534f;
-  padding: 6px 12px;
-  font-size: 0.9rem;
-}
-/* Botón de eliminar del carrito */
-
-.producto-carrito button:hover {
-  background-color: #b52b27;
-}
-/* Hover más oscuro para eliminar producto */
-
-#vaciar-carrito {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #444;
+#inicio .btn {
+  background-color: #f68e8e;
   color: white;
-  border-radius: 6px;
-  cursor: pointer;
+  font-size: 2vw;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
   font-weight: bold;
-  border: none;
-  transition: background-color 0.3s ease;
 }
-/* Botón de vaciar todo el carrito */
 
-#vaciar-carrito:hover {
-  background-color: #222;
+#inicio .btn:hover {
+  background-color: #f08c9f;
 }
-/* Cambio de color al pasar el mouse */
+
+
+/* Estilos Responsivos */
+@media (max-width: 1200px) { 
+  nav a { 
+    font-size: 2.5vw; 
+    padding: 1vh 2vw; 
+  }
+
+  .producto img { 
+    width: 40vw; 
+    max-width: 200px; 
+  }
+
+  #inicio { 
+    padding: 10vh 2vw; 
+  }
+}
+
+@media (max-width: 768px) { 
+  nav { 
+    flex-direction: column; 
+    text-align: center; 
+  }
+
+  nav a { 
+    font-size: 4vw; 
+  }
+
+  .producto img { 
+    width: 70vw; 
+    max-width: 150px; 
+  }
+
+  #inicio { 
+    padding: 8vh 2vw; 
+  }
+}
+
+@media (max-width: 480px) { 
+  nav a { 
+    font-size: 5vw; 
+    padding: 2vh 4vw; 
+  }
+
+  .producto img { 
+    width: 80vw; 
+    max-width: 150px; 
+  }
+
+  section { 
+    margin: 5vw 0; 
+    padding: 5vh 2vw; 
+  }
+
+  .container { 
+    width: 90%; 
+    padding: 5vw; 
+  } 
+}
+
+/* --------------------------------------------- */
+/* Estilos añadidos para validacion.html (formulario) */
+/* --------------------------------------------- */
 
 #registro {
-  max-width: 400px;
-  margin: 40px auto;
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    width: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-/* Contenedor del formulario de registro */
 
-#registro h2 {
-  margin-bottom: 20px;
-  color: #b33a3a;
-  text-align: center;
+h2 {
+    color: #F8A9D3;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
-/* Título del formulario */
 
-#registro label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
 }
-/* Etiquetas del formulario */
 
-#registro input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
 }
-/* Inputs del formulario de registro */
 
-#registro button {
-  width: 100%;
-  background-color: #b33a3a;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #F8A9D3;
+    outline: none;
 }
-/* Botón de registro */
-
-#registro button:hover {
-  background-color: #8c2d2d;
-}
-/* Hover más oscuro para el botón */
 
 .error {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: -10px;
-  margin-bottom: 15px;
-  text-align: center;
+    color: #D9534F;
+    font-size: 12px;
+    margin-top: 5px;
 }
-/* Estilo para mensajes de error */
+
+.exito {
+    color: #28a745;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+button {
+    background-color: #F8A9D3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f497c4;
+}
+
+button:focus {
+    outline: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input,
+form button {
+    margin-bottom: 15px;
+}
+
+#mensaje-exito {
+    display: none;
+    margin-top: 10px;
+}
+
+input:focus {
+    border-color: #F8A9D3;
+}
+#registro {
+    width: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#registro h2 {
+    color: #F8A9D3;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#registro label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#registro input[type="text"],
+#registro input[type="email"],
+#registro input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#registro button {
+    background-color: #F8A9D3;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#registro button:hover {
+    background-color: #f497c4;
+}
+
+#registro a {
+    color: #f68e8e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#registro a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Proveedores</title>
+  <link rel="stylesheet" href="Style.css" />
+  <script src="biblio.js" defer></script>
+</head>
+<body>
+  <h1>Registro de Proveedores</h1>
+
+  <div id="contenedor"></div>
+
+  <h2>Formulario de Proveedor</h2>
+  <form id="formulario" onsubmit="guardarProveedor(); return false;">
+    <input type="hidden" id="index" />
+    <label>Empresa: <input type="text" id="empresa" required /></label><br />
+    <label>Rubro: <input type="text" id="rubro" required /></label><br />
+    <label>Observaciones: <textarea id="observaciones" required></textarea></label><br />
+    <button type="submit">Registrar</button>
+    <button type="reset" onclick="document.getElementById('index').value = '';">Cancelar</button>
+  </form>
+
+  <div style="margin-top: 20px;">
+    <button onclick="guardarEnLocalStorage()">Guardar Datos</button>
+    <button onclick="exportarComoXML()">Exportar XML</button>
+  </div>
+</body>
+</html>

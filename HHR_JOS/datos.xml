@@ -1,0 +1,23 @@
+<clientes>
+  <cliente>
+    <nombre>Grupo Atlas</nombre>
+    <sector>Finanzas</sector>
+    <notas><![CDATA[
+    Llamar el próximo lunes
+    ]]></notas>
+  </cliente>
+  <cliente>
+    <nombre>Hogar Feliz</nombre>
+    <sector>Inmobiliaria</sector>
+    <notas><![CDATA[
+    Enviar cotizaciones esta semana
+    ]]></notas>
+  </cliente>
+  <cliente>
+    <nombre>Café Delicias</nombre>
+    <sector>Gastronomía</sector>
+    <notas><![CDATA[
+    Pagos confirmados
+    ]]></notas>
+  </cliente>
+</clientes>
