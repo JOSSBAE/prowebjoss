@@ -98,7 +98,7 @@
 
   // Validación CVV
   document.getElementById("cvv").addEventListener("input", function () {
-    let cvv = this.value.replace(/\D/g, "");
+   let cvv = this.value.replace(/\D/g, "");
     let mensajeError = document.getElementById("cvv-error");
 
     if (cvv.length === 3) {
@@ -123,7 +123,7 @@
     if (metodo && nombre && (tarjeta.length === 16 || tarjeta.length === 18) && cvv.length === 3 && fecha) {
       document.getElementById("mensaje-exito").style.display = "block"; 
 
-      // ✅ Limpiar carrito en todas las pestañas
+      //Limpiar carrito en todas las pestañas
       localStorage.removeItem('carrito');
       window.dispatchEvent(new Event('storage')); // Para que la misma ventana también actualice
 
