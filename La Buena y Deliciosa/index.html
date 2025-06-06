@@ -1,70 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Metadatos del documento -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Título de la pestaña del navegador -->
   <title>La Buena y Deliciosa</title>
+  
+  <!-- Enlace a la hoja de estilos externa -->
   <link rel="stylesheet" href="principal.css" />
 </head>
 <body>
+  <!-- Metadatos Open Graph para compartir en redes sociales -->
+  <meta property="og:title" content="La Buena y Deliciosa - Postres Irresistibles" />
+  <meta property="og:description" content="Descubre nuestra deliciosa variedad de postres hechos con amor." />
+  <meta property="og:image" content="https://jossbae.github.io/prowebjoss/La%20Buena%20y%20Deliciosa/inicio.jpg" />
+  <meta property="og:url" content="https://github.com/JOSSBAE/prowebjoss.git" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="La Buena y Deliciosa" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+</head>
+<body>
+  <!-- Barra de navegación principal -->
   <nav>
+    <!-- Logo/nombre de la tienda con estilo especial -->
     <a href="index.html" style="color: white; font-size: 2.5rem; font-family: 'Pacifico', cursive; text-decoration: none;">La Buena y Deliciosa</a>
+    
+    <!-- Enlaces de navegación -->
     <a href="index.html">Inicio</a>
     <a href="#" id="link-productos">Productos</a>
     <a href="#" id="link-carrito"> 🛒 <span id="contador-carrito">0</span> </a>
     <a href="#" id="link-pago">Formas de Pago</a>
+    
+    <!-- Botón para cerrar sesión -->
     <button onclick="cerrarSesion()">Cerrar Sesión</button>
   </nav>
 
+  <!-- Sección principal de bienvenida -->
   <section id="inicio" class="seccion">
     <header>
+      <!-- Título y descripción de bienvenida -->
       <h1>La Buena y Deliciosa</h1>
       <p>¡Postres irresistibles, hechos con amor!</p>
     </header>
+    
+    <!-- Botón para ver productos (requiere sesión) -->
     <a href="#" id="btn-ver-productos" class="btn">Ver Productos</a>
   </section>
 
   <script>
-    // Función para proteger rutas si no hay sesión activa
+    // Función que verifica si el usuario tiene sesión iniciada
     function verificarSesion(e, destino) {
       const sesionIniciada = localStorage.getItem('usuarioLogueado');
       if (!sesionIniciada) {
+        // Si no hay sesión, evita la navegación y redirige a la página de login
         e.preventDefault();
         alert("Debes iniciar sesión o registrarte para continuar.");
         window.location.href = "validacion.html";
       } else {
+        // Si hay sesión, redirige a la página deseada
         window.location.href = destino;
       }
     }
 
-    // Asignar eventos a los enlaces protegidos
+    // Espera a que se cargue el DOM para asignar eventos a los enlaces protegidos
     document.addEventListener('DOMContentLoaded', function () {
+      // Enlace a productos
       document.getElementById('link-productos').addEventListener('click', function(e) {
         verificarSesion(e, "productos.html");
       });
+      // Enlace al carrito
       document.getElementById('link-carrito').addEventListener('click', function(e) {
         verificarSesion(e, "carrito.html");
       });
+      // Enlace a formas de pago
       document.getElementById('link-pago').addEventListener('click', function(e) {
         verificarSesion(e, "pago.html");
       });
+      // Botón "Ver Productos"
       document.getElementById('btn-ver-productos').addEventListener('click', function(e) {
         verificarSesion(e, "productos.html");
       });
     });
 
-    // Carrito (simulado)
+    // Recupera el carrito almacenado en localStorage o inicia uno vacío
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Actualiza el contador del carrito en la interfaz
     function actualizarContador() {
       document.getElementById('contador-carrito').textContent = carrito.length;
     }
     actualizarContador();
 
-    // Cierre de sesión
+    // Función para cerrar la sesión del usuario
     function cerrarSesion() {
-      localStorage.removeItem('usuarioLogueado');
+      localStorage.removeItem('usuarioLogueado'); // Elimina la sesión del almacenamiento local
       alert("Has cerrado sesión.");
-      location.reload();
+      location.reload(); // Recarga la página para aplicar los cambios
     }
   </script>
 </body>

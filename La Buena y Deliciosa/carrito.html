@@ -1,59 +1,88 @@
 <!DOCTYPE html>
+<!-- Define el tipo de documento HTML5 -->
+
 <html lang="es">
+<!-- Página en idioma español -->
+
 <head>
   <meta charset="UTF-8" />
+  <!-- Soporta caracteres especiales como tildes -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Diseño responsive para móviles -->
+
   <title>Carrito - La Buena y Deliciosa</title>
+  <!-- Título que aparece en la pestaña del navegador -->
+
   <link rel="stylesheet" href="principal.css" />
+  <!-- Enlace a hoja de estilos externa -->
+
   <style>
+    /* Estilos rápidos dentro del HTML */
     header h1 {
       margin-top: -100px;
     }
+
     .eliminar-btn {
       color: red;
       cursor: pointer;
       margin-left: 10px;
     }
+
     .producto-carrito {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
     }
+
     .producto-carrito img {
       width: 80px;
       height: 80px;
       margin-right: 20px;
       border-radius: 8px;
     }
+
     .producto-detalle {
       flex: 1;
     }
   </style>
 </head>
+
 <body>
+  <!-- Cuerpo de la página -->
+
   <nav>
-    <a class="sc-eHgmQL kzWSGr" href="index.html" style="color: white; font-size: 2.5rem; font-family: 'Pacifico', cursive; text-decoration: none;">La Buena y Deliciosa</a>
+    <!-- Menú de navegación -->
+    <a class="sc-eHgmQL kzWSGr" href="index.html" style="...">La Buena y Deliciosa</a>
     <a href="index.html" onclick="mostrarSeccion('inicio')">Inicio</a>
     <a href="productos.html" onclick="mostrarSeccion('productos')">Productos</a>
     <a href="carrito.html" class="carrito-link"> 🛒 <span id="contador-carrito">0</span> </a>
     <a href="pago.html" onclick="mostrarSeccion('pago')">Formas de Pago</a>
   </nav>
 
-  <!-- Sección Carrito -->
+  <!-- Sección principal del carrito -->
   <section id="carrito" class="seccion">
     <h2>Tu Carrito</h2>
     <div id="lista-carrito" class="carrito-estilo"></div>
+    <!-- Aquí se listan los productos -->
+
     <p>Total: $<span id="total">0</span></p>
+    <!-- Total del carrito -->
+
     <button onclick="window.location.href='pago.html'">Ir a Pagar</button>
+    <!-- Botón para ir a pagar -->
   </section>
 
   <script>
+    // Obtener carrito del localStorage o inicializarlo
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+    // Actualiza el número de productos
     function actualizarContador() {
       document.getElementById('contador-carrito').textContent = carrito.length;
     }
 
+    // Elimina producto según el índice
     function eliminarProducto(index) {
       carrito.splice(index, 1);
       localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -61,6 +90,7 @@
       actualizarContador();
     }
 
+    // Renderiza el contenido del carrito
     function actualizarCarrito() {
       const listaCarrito = document.getElementById('lista-carrito');
       const totalSpan = document.getElementById('total');
@@ -69,11 +99,12 @@
 
       carrito.forEach((item, index) => {
         total += item.precio * item.cantidad;
+
         const productoDiv = document.createElement('div');
         productoDiv.classList.add('producto-carrito');
 
         const img = document.createElement('img');
-        img.src = item.imagen;  // Cargar imagen desde el carrito
+        img.src = item.imagen;
         img.alt = item.nombre;
 
         const detallesDiv = document.createElement('div');
@@ -85,15 +116,20 @@
         eliminarBtn.classList.add('eliminar-btn');
         eliminarBtn.onclick = () => eliminarProducto(index);
 
+        // Agrega imagen, detalles y botón al contenedor
         productoDiv.appendChild(img);
         productoDiv.appendChild(detallesDiv);
         productoDiv.appendChild(eliminarBtn);
+
+        // Agrega producto al DOM
         listaCarrito.appendChild(productoDiv);
       });
 
+      // Actualiza el total
       totalSpan.textContent = total.toFixed(2);
     }
 
+    // Vacía el carrito
     function vaciarCarrito() {
       carrito = [];
       localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -101,12 +137,16 @@
       actualizarContador();
     }
 
+    // Al cargar la página
     window.addEventListener('load', () => {
       const urlParams = new URLSearchParams(window.location.search);
+
+      // Muestra alerta si compra fue completada
       if (urlParams.get('compra') === 'completada') {
         alert('¡Compra realizada con éxito!');
         vaciarCarrito();
       }
+
       actualizarCarrito();
       actualizarContador();
     });
