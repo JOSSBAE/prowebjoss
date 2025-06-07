@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Juego de Dados</title>
+    <link rel="stylesheet" href="principal.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎲 Juego de Dados</h1>
+        
+        <div class="players">
+            <div class="player">
+                <h2>Jugador 1</h2>
+                <div class="dice" id="dice1">⚄</div>
+            </div>
+            
+            <div class="player">
+                <h2>Jugador 2</h2>
+                <div class="dice" id="dice2">⚂</div>
+            </div>
+        </div>
+        
+        <button id="rollButton" onclick="tirarDados()">🎯 Tirar Dados</button>
+        
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <!-- Efecto de sonido (opcional) -->
+    <audio id="diceSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-dice-roll-1994.mp3"></audio>
+
+    <script src="java.js"></script>
+</body>
+</html>
