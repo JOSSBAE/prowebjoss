@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Control de Gastos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Ingreso de Gasto</h1>
+
+  <form id="formularioGasto">
+    <label for="fecha">Día:</label>
+    <input type="date" id="fecha" name="fecha" required />
+
+    <label for="concepto">Descripción:</label>
+    <input type="text" id="concepto" name="concepto" placeholder="Ejemplo: Pago de renta" required />
+
+    <label for="monto">Cantidad:</label>
+    <input type="number" step="0.01" id="monto" name="monto" placeholder="Ejemplo: 3500.00" required />
+
+    <label for="categoria">Tipo de Gasto:</label>
+    <select id="categoria" name="categoria" required>
+      <option value="">Elige una opción</option>
+      <option value="Operación">Operación</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Salarios">Salarios</option>
+      <option value="Varios">Varios</option>
+    </select>
+
+    <button type="submit">Registrar Gasto</button>
+  </form>
+
+  <div class="mensaje-exito" id="mensajeExito">
+    ¡El gasto se ha registrado con éxito! 
+    <a id="descargarXML" style="display:none; text-decoration: none;"></a>
+  </div>
+
+  <script src="biblioteca.js"></script>
+</body>
+</html>

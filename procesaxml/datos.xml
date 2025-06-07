@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gastos>
+  <gasto>
+    <fecha>2025-06-06</fecha>
+    <descripcion>Pago de renta</descripcion>
+    <cantidad>3500.00</cantidad>
+    <tipoGasto>Operación</tipoGasto>
+  </gasto>
+  <gasto>
+    <fecha>2025-06-05</fecha>
+    <descripcion>Campaña publicitaria</descripcion>
+    <cantidad>1200.50</cantidad>
+    <tipoGasto>Marketing</tipoGasto>
+  </gasto>
+  <gasto>
+    <fecha>2025-06-04</fecha>
+    <descripcion>Salario empleado</descripcion>
+    <cantidad>4500.00</cantidad>
+    <tipoGasto>Salarios</tipoGasto>
+  </gasto>
+</gastos>
