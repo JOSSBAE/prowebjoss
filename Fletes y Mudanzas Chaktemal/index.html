@@ -109,7 +109,7 @@
     agendas.push({fecha,hora});
     localStorage.setItem("agendas", JSON.stringify(agendas));
 
-    let mensaje = `Nueva cotización 🚛 Mudanzas Chetumal\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nObjetos: ${objetos}\n\nPrecio: $${precio}\n\nOrigen: ${origen}\nDestino: ${destino}\n\nIncluye carga y descarga a pie de casa.\n⚠️ Nota: Este costo incluye personal para cargar y descargar sus pertenencias a pie de casa (se refiere a cochera o entrada) si requiere ayuda para acomodar sus pertenencias dentro de su domicilio(primer planta) o subir a un segundo piso ya es a propina para el personal. Si requiere segundas vueltas, el precio se negocia.`;
+    let mensaje = `Nueva cotización 🚛 Mudanzas Chetumal\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nObjetos: ${objetos}\n\nPrecio: $${precio}\n\nOrigen: ${origen}\nDestino: ${destino}\n\nEste costo incluye personal para cargar y descargar sus pertenencias a pie de casa (se refiere a cochera o entrada) si requiere ayuda para acomodar sus pertenencias dentro de su domicilio(primer planta) o subir a un segundo piso ya es a propina para el personal.\n⚠️ Nota: si requiere segunda vuelta, el precio se negocia.`;
 
     let url = "https://wa.me/529833400341?text=" + encodeURIComponent(mensaje);
     window.open(url,"_blank");
