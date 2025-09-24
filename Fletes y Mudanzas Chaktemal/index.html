@@ -43,10 +43,9 @@
 
     <label>Tipo de servicio</label>
     <select id="servicio">
-      <option value="150">Mini-flete ($150)</option>
-      <option value="300">Mini-flete mediano ($300)</option>
-      <option value="500">Mini-flete grande ($500)</option>
-      <option value="450">Mudanza completa ($450)</option>
+      <option value="150">Mini-flete</option>
+      <option value="300">Flete mediano</option>
+      <option value="450">Mudanza completa</option>
     </select>
 
     <label>Lista de objetos</label>
@@ -93,7 +92,7 @@
     localStorage.setItem("agendas", JSON.stringify(agendas));
 
     // Crear mensaje WhatsApp
-    let mensaje = `Nueva cotización Mudanzas Chactemal 🚚\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nServicio: ${servicioTexto}\n${total}\n\nOrigen: ${origen}\nDestino: ${destino}\nObjetos: ${objetos}\n\nNota: Incluye carga y descarga a pie de casa. Propinas si requiere ayuda extra.`;
+    let mensaje = `Nueva cotización Mudanzas Chactemal 🚚\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nServicio: ${servicioTexto}\n${total}\n\nOrigen: ${origen}\nDestino: ${destino}\nObjetos: ${objetos}\n\nNota: Este costo incluye personal para cargar y descargar sus pertenencias a pie de casa (se refiere a cochera o entrada) si requiere ayuda para acomodar sus pertenencias dentro de su domicilio(primer planta) o subir a un segundo piso ya es a propina para el personal.`;
 
     let url = "https://wa.me/529833400341?text=" + encodeURIComponent(mensaje);
     window.open(url,"_blank");
