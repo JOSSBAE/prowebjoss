@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Cotizador Mudanzas Chactemal</title>
+  <title>Cotizador Mudanzas Chetumal</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body { font-family: Arial, sans-serif; background:#f7f7f7; padding:20px; }
@@ -41,16 +41,8 @@
     <label>Hora</label>
     <input type="time" id="hora">
 
-    <label>Tipo de servicio</label>
-    <select id="servicio">
-      <option value="150">Mini-flete ($150)</option>
-      <option value="300">Mini-flete mediano ($300)</option>
-      <option value="500">Mini-flete grande ($500)</option>
-      <option value="450">Mudanza completa ($450)</option>
-    </select>
-
     <label>Lista de objetos</label>
-    <textarea id="objetos" rows="3" oninput="analizarObjetos()"></textarea>
+    <textarea id="objetos" rows="3"></textarea>
 
     <p id="resultado"></p>
     <p class="error" id="error"></p>
@@ -62,26 +54,33 @@
 <script>
   let agendas = JSON.parse(localStorage.getItem("agendas")) || [];
 
-  // Palabras clave que obligan a mudanza
-  const grandes = ["refrigerador","lavadora","sala","cama","ropero","tocador","mueble","tanque","estufa"];
-
-  function analizarObjetos(){
-    let objetos = document.getElementById("objetos").value.toLowerCase();
-    let servicio = document.getElementById("servicio");
-
-    let esMudanza = grandes.some(item => objetos.includes(item));
-
-    if(esMudanza){
-      servicio.value = "450"; // fuerza mudanza
-      document.getElementById("resultado").innerText = "Se detectaron objetos grandes → Mudanza completa ($450)";
-    } else {
-      document.getElementById("resultado").innerText = "Puedes elegir mini-flete (150, 300 o 500 según cantidad)";
-    }
-  }
+  // Objetos grandes
+  const grandes = ["refrigerador","lavadora","sala","cama","ropero","tocador","tanque","estufa","tele"];
 
   function cotizar(){
-    let servicio = parseInt(document.getElementById("servicio").value);
-    document.getElementById("resultado").innerText = "Total: $" + servicio;
+    let objetosTexto = document.getElementById("objetos").value.toLowerCase();
+    let lista = objetosTexto.split(",").map(x => x.trim()).filter(x => x.length>0);
+
+    let grandesDetectados = grandes.filter(item => objetosTexto.includes(item));
+    let precio = 0;
+    let detalle = "";
+
+    // Reglas de precios
+    if(grandesDetectados.length > 1 || (grandesDetectados.length === 1 && lista.length > 1)){
+      precio = 450;
+      detalle = "Mudanza completa ($450). Se detectaron varios artículos grandes.";
+    } else if(grandesDetectados.length === 1 && lista.length === 1){
+      precio = 150;
+      detalle = "Mini-flete ($150). Solo 1 artículo grande.";
+    } else {
+      if(lista.length <= 2) { precio = 150; detalle = "Mini-flete chico ($150)."; }
+      else if(lista.length === 3) { precio = 300; detalle = "Mini-flete mediano ($300)."; }
+      else { precio = 450; detalle = "Mudanza completa ($450). Por cantidad de artículos."; }
+    }
+
+    document.getElementById("resultado").innerText = "Total: $" + precio + " → " + detalle +
+    "\nIncluye carga y descarga a pie de casa. Si requiere segunda vuelta, el precio se trata aparte.";
+    return precio;
   }
 
   function reservar(){
@@ -92,28 +91,33 @@
     let destino = document.getElementById("destino").value;
     let fecha = document.getElementById("fecha").value;
     let hora = document.getElementById("hora").value;
-    let servicio = document.getElementById("servicio");
-    let servicioTexto = servicio.options[servicio.selectedIndex].text;
-    let total = document.getElementById("resultado").innerText;
     let objetos = document.getElementById("objetos").value;
 
-    // Validar que fecha y hora no estén ocupadas
-    let existe = agendas.find(a => a.fecha === fecha && a.hora === hora);
-    if(existe){
-      document.getElementById("error").innerText = "⚠️ Ese horario ya está ocupado, elige otro.";
+    // Validar horarios con media hora de separación
+    let horaMinutos = convertirHora(hora);
+    let ocupado = agendas.find(a => a.fecha === fecha && 
+      Math.abs(convertirHora(a.hora) - horaMinutos) < 30);
+
+    if(ocupado){
+      document.getElementById("error").innerText = "⚠️ Ese horario está ocupado o demasiado cerca. Debe haber 30 min de diferencia.";
       return;
     }
     document.getElementById("error").innerText = "";
 
-    // Guardar agenda
+    let precio = cotizar();
+
     agendas.push({fecha,hora});
     localStorage.setItem("agendas", JSON.stringify(agendas));
 
-    // Crear mensaje WhatsApp
-    let mensaje = `Nueva cotización Mudanzas Chactemal 🚚\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nServicio: ${servicioTexto}\n${total}\n\nOrigen: ${origen}\nDestino: ${destino}\nObjetos: ${objetos}\n\nNota: Este costo incluye personal para cargar y descargar sus pertenencias a pie de casa (se refiere a cochera o entrada) si requiere ayuda para acomodar sus pertenencias dentro de su domicilio(primer planta) o subir a un segundo piso ya es a propina para el personal.`;
+    let mensaje = `Nueva cotización 🚛 Mudanzas Chetumal\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nObjetos: ${objetos}\n\nPrecio: $${precio}\n\nOrigen: ${origen}\nDestino: ${destino}\n\nIncluye carga y descarga a pie de casa.\n⚠️ Nota: Este costo incluye personal para cargar y descargar sus pertenencias a pie de casa (se refiere a cochera o entrada) si requiere ayuda para acomodar sus pertenencias dentro de su domicilio(primer planta) o subir a un segundo piso ya es a propina para el personal. Si requiere segundas vueltas, el precio se negocia.`;
 
     let url = "https://wa.me/529833400341?text=" + encodeURIComponent(mensaje);
     window.open(url,"_blank");
+  }
+
+  function convertirHora(hora){
+    let [h,m] = hora.split(":").map(Number);
+    return h*60+m;
   }
 </script>
 </body>
