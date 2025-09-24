@@ -1,0 +1,93 @@
+/* ====== Estilos generales ====== */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #007bff, #00c851);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ====== Caja principal ====== */
+.box {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* ====== Título ====== */
+.box h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333333;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* ====== Etiquetas y selects ====== */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #444444;
+  text-align: left;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  background: #ffffff;
+}
+
+/* ====== Resultado ====== */
+#resultado {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* ====== Botones ====== */
+button {
+  margin-top: 12px;
+  width: 100%;
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:nth-of-type(2) {
+  background: #25D366; /* WhatsApp green */
+}
+
+button:nth-of-type(2):hover {
+  background: #128C7E;
+}

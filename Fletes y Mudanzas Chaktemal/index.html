@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cotizador Mudanzas Chactemal</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f7f7f7; }
+    .box { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+    label { display: block; margin-top: 10px; }
+    button { margin-top: 15px; background: #28a745; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Cotizador en línea</h2>
+
+    <label>Tamaño de carga:
+      <select id="tamano">
+        <option value="150">Pequeña ($150)</option>
+        <option value="300">Mediana ($300)</option>
+        <option value="500">Grande ($500)</option>
+      </select>
+    </label>
+
+    <label>Servicio adicional:
+      <select id="extra">
+        <option value="0">Ninguno</option>
+        <option value="50">Materiales (+$50)</option>
+        <option value="100">Embalaje profesional (+$100)</option>
+      </select>
+    </label>
+
+    <p id="resultado">Total: $0</p>
+
+    <button onclick="cotizar()">Calcular</button>
+    <button onclick="reservar()">Reservar por WhatsApp</button>
+  </div>
+
+  <script>
+    function cotizar() {
+      let tamano = parseInt(document.getElementById("tamano").value);
+      let extra = parseInt(document.getElementById("extra").value);
+      let total = tamano + extra;
+      document.getElementById("resultado").innerText = "Total: $" + total;
+    }
+
+    function reservar() {
+      let total = document.getElementById("resultado").innerText;
+      let url = "https://wa.me/529833400341?text=Hola,%20quiero%20reservar%20una%20mudanza.%20" + encodeURIComponent(total);
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
