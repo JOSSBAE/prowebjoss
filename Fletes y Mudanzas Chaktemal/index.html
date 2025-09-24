@@ -43,13 +43,14 @@
 
     <label>Tipo de servicio</label>
     <select id="servicio">
-      <option value="150">Mini-flete</option>
-      <option value="300">Flete mediano</option>
-      <option value="450">Mudanza completa</option>
+      <option value="150">Mini-flete ($150)</option>
+      <option value="300">Mini-flete mediano ($300)</option>
+      <option value="500">Mini-flete grande ($500)</option>
+      <option value="450">Mudanza completa ($450)</option>
     </select>
 
     <label>Lista de objetos</label>
-    <textarea id="objetos" rows="3"></textarea>
+    <textarea id="objetos" rows="3" oninput="analizarObjetos()"></textarea>
 
     <p id="resultado"></p>
     <p class="error" id="error"></p>
@@ -60,6 +61,23 @@
 
 <script>
   let agendas = JSON.parse(localStorage.getItem("agendas")) || [];
+
+  // Palabras clave que obligan a mudanza
+  const grandes = ["refrigerador","lavadora","sala","cama","ropero","tocador","mueble","tanque","estufa"];
+
+  function analizarObjetos(){
+    let objetos = document.getElementById("objetos").value.toLowerCase();
+    let servicio = document.getElementById("servicio");
+
+    let esMudanza = grandes.some(item => objetos.includes(item));
+
+    if(esMudanza){
+      servicio.value = "450"; // fuerza mudanza
+      document.getElementById("resultado").innerText = "Se detectaron objetos grandes → Mudanza completa ($450)";
+    } else {
+      document.getElementById("resultado").innerText = "Puedes elegir mini-flete (150, 300 o 500 según cantidad)";
+    }
+  }
 
   function cotizar(){
     let servicio = parseInt(document.getElementById("servicio").value);
