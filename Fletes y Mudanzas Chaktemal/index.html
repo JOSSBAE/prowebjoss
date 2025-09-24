@@ -5,51 +5,99 @@
   <title>Cotizador Mudanzas Chactemal</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f7f7f7; }
-    .box { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
-    label { display: block; margin-top: 10px; }
-    button { margin-top: 15px; background: #28a745; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+    body { font-family: Arial, sans-serif; background:#f7f7f7; padding:20px; }
+    .box { background:white; padding:20px; border-radius:10px; max-width:700px; margin:auto; box-shadow:0 4px 10px rgba(0,0,0,.2);}
+    h2 { text-align:center; color:#007bff; }
+    label { font-weight:bold; margin-top:10px; display:block; }
+    input, select, textarea { width:100%; padding:8px; margin-top:5px; border:1px solid #ccc; border-radius:5px; }
+    button { margin-top:15px; padding:12px; border:none; width:100%; border-radius:8px; font-weight:bold; cursor:pointer;}
+    .btn-primary { background:#28a745; color:white; }
+    .btn-whatsapp { background:#25D366; color:white; }
+    .error { color:red; font-weight:bold; margin-top:10px; }
   </style>
 </head>
 <body>
   <div class="box">
-    <h2>Cotizador en línea</h2>
+    <h2>¡Cotiza tu Mudanza!</h2>
 
-    <label>Tamaño de carga:
-      <select id="tamano">
-        <option value="150">Pequeña ($150)</option>
-        <option value="300">Mediana ($300)</option>
-        <option value="500">Grande ($500)</option>
-      </select>
-    </label>
+    <label>Nombre</label>
+    <input id="nombre">
 
-    <label>Servicio adicional:
-      <select id="extra">
-        <option value="0">Ninguno</option>
-        <option value="50">Materiales (+$50)</option>
-        <option value="100">Embalaje profesional (+$100)</option>
-      </select>
-    </label>
+    <label>Apellido</label>
+    <input id="apellido">
 
-    <p id="resultado">Total: $0</p>
+    <label>Teléfono</label>
+    <input id="telefono">
 
-    <button onclick="cotizar()">Calcular</button>
-    <button onclick="reservar()">Reservar por WhatsApp</button>
+    <label>Ciudad/Colonia Origen</label>
+    <input id="origen">
+
+    <label>Ciudad/Colonia Destino</label>
+    <input id="destino">
+
+    <label>Fecha</label>
+    <input type="date" id="fecha">
+
+    <label>Hora</label>
+    <input type="time" id="hora">
+
+    <label>Tipo de servicio</label>
+    <select id="servicio">
+      <option value="150">Mini-flete ($150)</option>
+      <option value="300">Mini-flete mediano ($300)</option>
+      <option value="500">Mini-flete grande ($500)</option>
+      <option value="450">Mudanza completa ($450)</option>
+    </select>
+
+    <label>Lista de objetos</label>
+    <textarea id="objetos" rows="3"></textarea>
+
+    <p id="resultado"></p>
+    <p class="error" id="error"></p>
+
+    <button class="btn-primary" onclick="cotizar()">Calcular</button>
+    <button class="btn-whatsapp" onclick="reservar()">Reservar por WhatsApp</button>
   </div>
 
-  <script>
-    function cotizar() {
-      let tamano = parseInt(document.getElementById("tamano").value);
-      let extra = parseInt(document.getElementById("extra").value);
-      let total = tamano + extra;
-      document.getElementById("resultado").innerText = "Total: $" + total;
-    }
+<script>
+  let agendas = JSON.parse(localStorage.getItem("agendas")) || [];
 
-    function reservar() {
-      let total = document.getElementById("resultado").innerText;
-      let url = "https://wa.me/529833400341?text=Hola,%20quiero%20reservar%20una%20mudanza.%20" + encodeURIComponent(total);
-      window.open(url, "_blank");
+  function cotizar(){
+    let servicio = parseInt(document.getElementById("servicio").value);
+    document.getElementById("resultado").innerText = "Total: $" + servicio;
+  }
+
+  function reservar(){
+    let nombre = document.getElementById("nombre").value;
+    let apellido = document.getElementById("apellido").value;
+    let telefono = document.getElementById("telefono").value;
+    let origen = document.getElementById("origen").value;
+    let destino = document.getElementById("destino").value;
+    let fecha = document.getElementById("fecha").value;
+    let hora = document.getElementById("hora").value;
+    let servicio = document.getElementById("servicio");
+    let servicioTexto = servicio.options[servicio.selectedIndex].text;
+    let total = document.getElementById("resultado").innerText;
+    let objetos = document.getElementById("objetos").value;
+
+    // Validar que fecha y hora no estén ocupadas
+    let existe = agendas.find(a => a.fecha === fecha && a.hora === hora);
+    if(existe){
+      document.getElementById("error").innerText = "⚠️ Ese horario ya está ocupado, elige otro.";
+      return;
     }
-  </script>
+    document.getElementById("error").innerText = "";
+
+    // Guardar agenda
+    agendas.push({fecha,hora});
+    localStorage.setItem("agendas", JSON.stringify(agendas));
+
+    // Crear mensaje WhatsApp
+    let mensaje = `Nueva cotización Mudanzas Chactemal 🚚\n\nCliente: ${nombre} ${apellido}\nTel: ${telefono}\nFecha: ${fecha}\nHora: ${hora}\nServicio: ${servicioTexto}\n${total}\n\nOrigen: ${origen}\nDestino: ${destino}\nObjetos: ${objetos}\n\nNota: Incluye carga y descarga a pie de casa. Propinas si requiere ayuda extra.`;
+
+    let url = "https://wa.me/529833400341?text=" + encodeURIComponent(mensaje);
+    window.open(url,"_blank");
+  }
+</script>
 </body>
 </html>
